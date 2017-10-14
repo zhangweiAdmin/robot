@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="value" placeholder="请选择">
+  <el-select v-model="value" placeholder="请选择" @change="change">
     <el-option
       v-for="item in options"
       :key="item.value"
@@ -35,8 +35,9 @@
       }
     },
     methods:{
-      change(val){
-        console.log(val)
+      change (val) {
+        console.log('fdsfsd',val)
+        this.$emit('selectChange',val)
       }
     }
   }

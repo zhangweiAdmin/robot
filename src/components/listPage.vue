@@ -56,12 +56,12 @@ s
       },
     },
     mounted (){
-      console.log(this.$route.params)
+      var hangye=this.$route.params.hangye
       var self = this
       //获取初始化列表数据
       this.$http.get('/static/list.json',
       {
-        params: this.$route.params
+        params: {"hangye":hangye,}
       }).then((response) => {
         self.options =response.data.data.list 
       })

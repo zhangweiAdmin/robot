@@ -3,7 +3,7 @@
     <div class="indexBody">
       <ul>
         <li class="industry">
-          <span>行业选择</span><div class="industrySelect"><selects></selects></div>
+          <span>行业选择</span><div class="industrySelect"><selects @selectChange='selectChange'></selects></div>
         </li>
         <li class="appName">
           <span>应用名称</span><div class="industrySelect"> <input class="input"/></div>
@@ -28,11 +28,16 @@ export default {
   name: 'indexPage',
   data () {
     return {
+      selectData :""
     }
   },
   methods: {
     submit () {
-      this.$router.push({name: 'listPage', params: {"haha":'haha'}})
+      var hangye=this.selectData
+      this.$router.push({name: 'listPage', params: {"hangye":hangye}})
+    },
+    selectChange (data) {
+      this.selectData = data
     }
   },
   components: {selects}
