@@ -6,19 +6,19 @@
           <span>行业选择</span><div class="industrySelect"><selects @selectChange='selectChange'></selects></div>
         </li>
         <li class="appName">
-          <span>应用名称</span><div class="industrySelect"> <input class="input"/></div>
+          <span>应用名称</span><div class="industrySelect"> <input class="input" v-model='appname'/></div>
         </li>
         <li class="adKeyword">
-          <span>广告关键词</span><div class="industrySelect"><input class="input" placeholder="广告关键词可输入多个用逗号分隔"/></div>
+          <span>广告关键词</span><div class="industrySelect"><input class="input" placeholder="广告关键词可输入多个用逗号分隔" v-model='keywords'/></div>
         </li>
       </ul>    
     </div>
     <div class="indexFoot">
       <div class="submit" @click="submit">立即创作</div>
     </div>
-    <div class="history">
-        <img src="../assets/history.png">
-    </div>
+    <!-- <div class="history">
+        <img src="../assets/history.png" @click="toHistory">
+    </div> -->
   </div>
 </template>
 
@@ -28,16 +28,31 @@ export default {
   name: 'indexPage',
   data () {
     return {
-      selectData :""
+      selectData :"",
+      appname:"",
+      keywords:""
     }
   },
   methods: {
     submit () {
-      var hangye=this.selectData
-      this.$router.push({name: 'listPage', params: {"hangye":hangye}})
+      var industry = this.selectData
+      var appname = this.appname
+      var keywords = this.keywords
+      if(industry===''){
+        alert('请选择行业')
+      }else if(appname===''){
+        alert('请输入应用名称')
+      }else if(keywords===''){
+        alert('请输入关键字')
+      }else{
+        this.$router.push({name: 'listPage', params: {"industry":industry,"app_name":appname,"key_word":keywords}})
+      }
     },
     selectChange (data) {
       this.selectData = data
+    },
+    toHistory (){
+      this.$router.push({name:'history'});
     }
   },
   components: {selects}

@@ -1,19 +1,19 @@
 <template>
-  <div>
+  <div v-loading="loading2" element-loading-text="拼命加载中啊">
     <div class="container" v-show="options.length>0">
-      <div class="everyItem" v-for="(v,k) in options">
+      <div class="everyItem" v-for="(v,k) in options" >
         <p>{{v.text}}</p>
-        <div class="imgs" :itemId='v.itemId'>
-          <img class="zan" src='../assets/zan.png' @click="request(v.itemId,1,$event)"></img>
-          <img class="cai" src='../assets/cai.png' @click="request(v.itemId,0,$event)"></img>
+        <div class="imgs">
+          <img class="zan" src='../assets/zan.png' @click="request(v.id,1,$event)"></img>
+          <img class="cai" src='../assets/cai.png' @click="request(v.id,2,$event)"></img>
         </div>
       </div>
-      <div class="turnPage">换一批</div>
+      <div class="turnPage" @click='turnPage'>换一批</div>
       <div class="history">
           <img src="../assets/history.png" @click="toHistory"/>
       </div>
     </div>
-    <div class="container" v-show="options.length<=0">
+    <div class="container" v-show="nodata">
       <div class="noData">暂无数据</div>
       <div class="history">
           <img src="../assets/history.png" @click="toHistory"/>
@@ -21,28 +21,35 @@
     </div>
   </div>
 </template>
-s
+
 <script> 
+  var requestUrl = 'http://10.236.35.15:8013/'
   export default {
     data () {
       return {
         options: [],
         value: '',
-        isActive:false
+        isActive:false,
+        baseParam:"",
+        pageCount:1,
+        keywords:"",
+        industry:"",
+        loading2:true,
+        nodata:false
       }
     },
     methods:{
       toHistory () {
-        this.$router.push({name: 'history', params: 'hahaha'})
+        this.$router.push({name: 'history', params: this.baseParam})
       },
       request (itemId,state,evt){
         var tag = evt.srcElement||evt.target;
         var parentTag = tag.parentNode;
         var imgs = parentTag.childNodes;
         
-        this.$http.get('/static/list.json',
+        this.$http.get(requestUrl+"update_status",
         {
-          params:{"itemId":itemId,"state":state}
+          params:{"id":itemId,"target_status":state}
         }).then((response) => {
           imgs.forEach(function(val,key){
             if(val.nodeType===1){
@@ -50,21 +57,37 @@ s
             }
           });
           tag.style.border='1px solid #888'
-
           self.options =response.data.data.list 
         })
       },
+      init (params){
+        var self = this
+        //获取初始化列表数据
+        this.$http.get(requestUrl+"list",
+        {
+          params: params
+        }).then((response) => {
+          self.loading2 = false
+          if(response.body.tbody&&response.body.tbody.length>0){
+            self.options =response.body.tbody
+          }else{
+            this.nodata = true
+          }
+        })
+      },
+      turnPage (){
+        var params=this.baseParam
+        params.page=++this.pageCount;
+        params.rows='8'
+        this.init(params)
+      }
     },
     mounted (){
-      var hangye=this.$route.params.hangye
-      var self = this
-      //获取初始化列表数据
-      this.$http.get('/static/list.json',
-      {
-        params: {"hangye":hangye,}
-      }).then((response) => {
-        self.options =response.data.data.list 
-      })
+      this.baseParam=this.$route.params
+      var params=this.baseParam
+      params.page=this.pageCount
+      params.rows='8'
+      this.init(params)
     }
   }
 </script>
