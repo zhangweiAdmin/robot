@@ -9,7 +9,7 @@ import vueResource from 'vue-resource'
 Vue.use(ElementUI)
 Vue.use(vueResource)
 Vue.config.productionTip = false
-
+window.baseUrl='http://10.13.4.162:8013/'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

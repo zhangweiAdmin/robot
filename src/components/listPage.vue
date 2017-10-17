@@ -23,7 +23,7 @@
 </template>
 
 <script> 
-  var requestUrl = 'http://10.236.35.15:8013/'
+  const baseUrl='http://10.13.4.162:8013/'
   export default {
     data () {
       return {
@@ -47,7 +47,7 @@
         var parentTag = tag.parentNode;
         var imgs = parentTag.childNodes;
         
-        this.$http.get(requestUrl+"update_status",
+        this.$http.get(baseUrl+"update_status",
         {
           params:{"id":itemId,"target_status":state}
         }).then((response) => {
@@ -57,13 +57,12 @@
             }
           });
           tag.style.border='1px solid #888'
-          self.options =response.data.data.list 
         })
       },
       init (params){
         var self = this
         //获取初始化列表数据
-        this.$http.get(requestUrl+"list",
+        this.$http.get(baseUrl+"list",
         {
           params: params
         }).then((response) => {
