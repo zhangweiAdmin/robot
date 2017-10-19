@@ -109,7 +109,7 @@ export default {
     cursor:pointer;
   }
   .history{
-    margin-top:40px;
+    margin-top:80px;
     float:right;
     margin-right:30px
   }

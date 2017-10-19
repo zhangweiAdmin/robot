@@ -2,7 +2,7 @@
   <div v-loading="loading2" element-loading-text="拼命加载中啊">
     <div class="container" v-show="options.length>0">
       <div class="everyItem" v-for="(v,k) in options" >
-        <p>{{v.text}}</p>
+        <p :title='v.text'>{{v.text}}</p>
         <div class="imgs">
           <img class="zan" src='../assets/zan.png' @click="request(v.id,1,$event)"></img>
           <img class="cai" src='../assets/cai.png' @click="request(v.id,2,$event)"></img>
@@ -96,7 +96,7 @@
     border:1px solid #000;
   }
   .container{
-    margin-top:40px;
+    margin-top:80px;
   }
   .container .everyItem{
     width:330px;
@@ -107,6 +107,13 @@
     margin:0px auto;
     margin-bottom:10px;
     font-size:12px
+  }
+  .everyItem p{
+    width: 285px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
   }
   .container .everyItem .imgs{
     justify-content:space-between;

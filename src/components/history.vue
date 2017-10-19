@@ -7,7 +7,7 @@
     <div  v-loading="loading2" element-loading-text="拼命加载中啊">
       <div class="container" v-show="options.length>0">
         <div class="everyItem" v-for="(v,k) in options">
-          <p>{{v.text}}</p>
+          <p :title='v.text'>{{v.text}}</p>
           <div class="imgs">
             <img class="zan" src='../assets/zan.png' v-show='v.status===1'/>
             <img class="cai" src='../assets/cai.png' v-show='v.status===2'/>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+  const baseUrl='http://10.75.29.39:8013/'
   export default {
     data () {
       return {
@@ -41,7 +42,8 @@
         
           }
         }).then((response) => {
-          this.options=[];
+          this.options=[]
+          this.nodata = true
         })
       },
       request (){
@@ -75,6 +77,8 @@
 <style scoped>
   .container{
     margin-top:40px;
+    height: 440px;
+    overflow: auto;
   }
   .container .everyItem{
     width:330px;
@@ -84,7 +88,14 @@
     background:#ccc;
     margin:0px auto;
     margin-bottom:10px;
-    font-size:12px
+    font-size:12px;
+  }
+  .everyItem p{
+    width: 295px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
   }
   .container .everyItem .imgs{
     justify-content:space-between;
