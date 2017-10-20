@@ -101,11 +101,6 @@
   .container{
     margin-top:80px;
   }
-  @media screen and (max-width: 600px) {
-      .container{
-         margin-top:20px;
-       }
-  }
   .everyItemCon{
     height:340px;
   }
@@ -129,11 +124,7 @@
     text-align: left;
     padding: 0px 10px;
   }
-  @media screen and (max-width: 600px) {
-    .container .everyItem{
-      width:85%;
-    }
-  }
+  
   .container .everyItem .imgs{
     justify-content:space-between;
     align-items:center;
@@ -217,5 +208,19 @@
     margin-top:40px;
     float:right;
     margin-right:30px
+  }
+  @media screen and (max-width: 600px) {
+    .container .everyItem{
+      width:85%;
+    }
+    .history{
+      margin-top:20px;
+    }
+    .container{
+      margin-top:20px;
+    }
+    .everyItemCon{
+      height:320px;
+    }
   }
 </style>

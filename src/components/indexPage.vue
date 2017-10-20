@@ -3,7 +3,7 @@
     <div class="indexBody">
       <ul>
         <li class="industry">
-          <span>行业选择</span><div class="industrySelect"><selects @selectChange='selectChange'></selects></div>
+          <span>行业选择</span><div class="industrySelect"><selects @selectChange='selectChange' class="selectCls"></selects></div>
         </li>
         <li class="appName">
           <span>应用名称</span><div class="industrySelect"> <input class="input" v-model='appname'/></div>
@@ -67,12 +67,7 @@ export default {
     justify-content: space-between;
     align-items: center;
   }
-  @media screen and (max-width: 600px) {
-    li {
-      width:100%;
-      height:80px;
-    }
-  }
+
   li span{
     margin-right:20px;
     font-size:14px;
@@ -81,6 +76,7 @@ export default {
   li div{
     width:230px;
   }
+  
   .indexBody{
     justify-content: center;
     align-items: center;
@@ -95,6 +91,24 @@ export default {
       border:1px solid #ccc;
       border-radius:4px;
       padding:0px 10px;
+  }
+  @media screen and (max-width: 600px) {
+    li {
+      width:100%;
+      height:80px;
+    }
+    li div{
+      width:100%;
+    }
+    .input{
+      width:200px;
+    }
+    li span{
+      width:100px;
+    }
+    .selectCls{
+      width:220px;
+    }
   }
   .indexFoot{
     width:100%;
