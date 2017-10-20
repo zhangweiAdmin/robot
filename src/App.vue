@@ -28,7 +28,7 @@ export default {
 }
 @media screen and (max-width: 600px) {
   #app{
-    margin-top: 100px;
+    margin-top: 20px;
   }
 }
 #header{
