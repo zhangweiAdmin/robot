@@ -100,8 +100,13 @@
   .container{
     margin-top:80px;
   }
+  @media screen and (max-width: 600px) {
+      .container{
+         margin-top:20px;
+       }
+  }
   .everyItemCon{
-    height:380px;
+    height:340px;
   }
   .container .everyItem{
     width:330px;
@@ -125,7 +130,7 @@
   }
   @media screen and (max-width: 600px) {
     .container .everyItem{
-      //width:
+      width:100%;
     }
     .everyItem p{
 

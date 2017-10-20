@@ -74,8 +74,8 @@
 
 <style scoped>
   .container{
-    margin-top:40px;
-    height: 440px;
+    margin-top:20px;
+    height: 340px;
     overflow: auto;
   }
   .container .everyItem{

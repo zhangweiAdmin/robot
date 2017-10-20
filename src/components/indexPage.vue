@@ -70,6 +70,7 @@ export default {
   @media screen and (max-width: 600px) {
     li {
       width:100%;
+      height:80px;
     }
   }
   li span{
