@@ -59,13 +59,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style  type="text/css" scoped>
   li{
     list-style:none;
-    height:70px;
+    height:100px;
     display:flex;
     justify-content: space-between;
     align-items: center;
+  }
+  @media screen and (max-width: 600px) {
+    li {
+      width:100%;
+    }
   }
   li span{
     margin-right:20px;
@@ -113,5 +118,7 @@ export default {
     float:right;
     margin-right:30px
   }
+  
+  
 </style>
 

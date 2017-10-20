@@ -4,13 +4,13 @@
       <a class="linkBtn returnBtn" @click="returnPage">返回</a>
       <a class="linkBtn clear" href="#" @click="clear">清空全部</a>
     </div>
-    <div  v-loading="loading2" element-loading-text="拼命加载中啊">
+    <div  v-loading="loading2" element-loading-text="拼命加载中啊" style="height:250px">
       <div class="container" v-show="options.length>0">
         <div class="everyItem" v-for="(v,k) in options">
           <p :title='v.text'>{{v.text}}</p>
           <div class="imgs">
-            <img class="zan" src='../assets/zan.png' v-show='v.status===1'/>
-            <img class="cai" src='../assets/cai.png' v-show='v.status===2'/>
+            <img  src='../assets/zan.png' v-show='v.status===1'/>
+            <img  src='../assets/cai.png' v-show='v.status===2'/>
           </div>
         </div>
       </div>
@@ -28,7 +28,6 @@
       return {
         options: [],
         value: '',
-        preParam:'',
         loading2:true,
         nodata:false
       }
@@ -64,11 +63,10 @@
         })
       },
       returnPage (){
-        this.$router.push({name: 'listPage', params: this.preParam})
+        this.$router.push({name: 'indexPage'})
       }
     },
     mounted () {
-      this.preParam=this.$route.params
       this.request ()
     }
   }
@@ -89,6 +87,7 @@
     margin:0px auto;
     margin-bottom:10px;
     font-size:12px;
+    border-radius:5px;
   }
   .everyItem p{
     width: 295px;
@@ -96,12 +95,17 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     text-align: left;
+    padding:0px 10px;
   }
   .container .everyItem .imgs{
     justify-content:space-between;
     align-items:center;
     display:flex;
     margin-right:10px
+  }
+  .imgs img{
+    width:30px;
+    height:30px;
   }
   .btnsContainer{
     width:330px;
@@ -128,4 +132,57 @@
   .btnsContainer .returnBtn{
     width:60px;
   }
+  @keyframes bounceIn {
+    0%,100%,20%,40%,60%,80% {
+      -webkit-transition-timing-function: cubic-bezier(0.215,.61,.355,1);
+      transition-timing-function: cubic-bezier(0.215,.61,.355,1)
+    }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3,.3,.3);
+    -ms-transform: scale3d(.3,.3,.3);
+    transform: scale3d(.3,.3,.3)
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.1,1.1,1.1);
+    -ms-transform: scale3d(1.1,1.1,1.1);
+    transform: scale3d(1.1,1.1,1.1)
+  }
+
+  40% {
+    -webkit-transform: scale3d(.9,.9,.9);
+    -ms-transform: scale3d(.9,.9,.9);
+    transform: scale3d(.9,.9,.9)
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03,1.03,1.03);
+    -ms-transform: scale3d(1.03,1.03,1.03);
+    transform: scale3d(1.03,1.03,1.03)
+  }
+
+  80% {
+    -webkit-transform: scale3d(.97,.97,.97);
+    -ms-transform: scale3d(.97,.97,.97);
+    transform: scale3d(.97,.97,.97)
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1,1,1);
+    -ms-transform: scale3d(1,1,1);
+    transform: scale3d(1,1,1)
+  }
+}
+
+.bounceIn {
+  -webkit-animation-name: bounceIn;
+  animation-name: bounceIn;
+  -webkit-animation-duration: .75s;
+  animation-duration: .75s
+}
+
 </style>

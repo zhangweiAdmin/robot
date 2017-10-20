@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <header id="header">
-      <img src="./assets/header.png">
-    </header>
-    <router-view/>
+    <div>
+      <header id="header">
+        <img src="./assets/header.png">
+      </header>
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -19,7 +21,15 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 200px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 600px) {
+  #app{
+    margin-top: 100px;
+  }
 }
 #header{
   display:flex;
