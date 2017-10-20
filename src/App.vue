@@ -30,6 +30,9 @@ export default {
   #app{
     margin-top: 20px;
   }
+  #heade img{
+    width:80%;
+  }
 }
 #header{
   display:flex;

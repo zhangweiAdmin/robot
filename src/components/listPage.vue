@@ -8,12 +8,12 @@
             <img src='../assets/zan.png' @click="request(v.id,1,$event)"></img>
             <img src='../assets/cai.png' @click="request(v.id,2,$event)"></img>
           </div>
-          </div>
+        </div>
       </div>
-    <div class="turnPage" @click='turnPage'>换一批</div>
-    <div class="history">
-        <img src="../assets/history.png" @click="toHistory"/>
-    </div>
+      <div class="turnPage" @click='turnPage'>换一批</div>
+      <div class="history">
+          <img src="../assets/history.png" @click="toHistory"/>
+      </div>
     </div>
     <div class="container" v-show="nodata">
       <div class="noData">暂无数据</div>
@@ -72,6 +72,7 @@
           if(response.body.tbody&&response.body.tbody.length>0){
             self.options =response.body.tbody
           }else{
+            self.options=[];
             this.nodata = true
           }
         })
@@ -130,10 +131,7 @@
   }
   @media screen and (max-width: 600px) {
     .container .everyItem{
-      width:100%;
-    }
-    .everyItem p{
-
+      width:85%;
     }
   }
   .container .everyItem .imgs{
