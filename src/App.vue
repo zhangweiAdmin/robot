@@ -9,10 +9,12 @@
   </div>
 </template>
 
-<script>
+<script> 
+
 export default {
   name: 'app'
 }
+
 </script>
 
 <style>
