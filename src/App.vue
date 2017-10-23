@@ -31,7 +31,7 @@ export default {
     margin-top: 20px;
   }
   #header img{
-    width:85%;
+    width:80%;
   }
 }
 #header{

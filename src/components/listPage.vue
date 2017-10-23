@@ -211,7 +211,7 @@
   }
   @media screen and (max-width: 600px) {
     .container .everyItem{
-      width:85%;
+      width:80%;
     }
     .history{
       margin-top:20px;

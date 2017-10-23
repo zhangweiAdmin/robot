@@ -4,7 +4,7 @@
       <a class="linkBtn returnBtn" @click="returnPage">返回</a>
       <a class="linkBtn clear" href="#" @click="clear">清空全部</a>
     </div>
-    <div  v-loading="loading2" element-loading-text="拼命加载中啊" style="height:250px">
+    <div  v-loading="loading2" element-loading-text="拼命加载中..." style="height:250px">
       <div class="container" v-show="options.length>0">
         <div class="everyItem" v-for="(v,k) in options">
           <p :title='v.text'>{{v.text}}</p>
@@ -184,5 +184,12 @@
   -webkit-animation-duration: .75s;
   animation-duration: .75s
 }
-
+ @media screen and (max-width: 600px) {
+  .container .everyItem{
+    width:85%;
+  }
+  .btnsContainer{
+    width:85%;
+  }
+ }
 </style>

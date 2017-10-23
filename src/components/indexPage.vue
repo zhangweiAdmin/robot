@@ -9,7 +9,7 @@
           <span>应用名称</span><div class="industrySelect"> <input class="input" v-model='appname'/></div>
         </li>
         <li class="adKeyword">
-          <span>广告关键词</span><div class="industrySelect"><input class="input" placeholder="广告关键词可输入多个用逗号分隔" v-model='keywords'/></div>
+          <span>广告关键词</span><div class="industrySelect"><input class="input" placeholder="关键词用逗号分隔" v-model='keywords'/></div>
         </li>
       </ul>    
     </div>
@@ -108,6 +108,14 @@ export default {
     }
     .selectCls{
       width:220px;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .input{
+      width:160px;
+    }
+    .selectCls{
+      width:180px;
     }
   }
   .indexFoot{
