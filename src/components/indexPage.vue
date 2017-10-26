@@ -5,9 +5,9 @@
         <li class="industry">
           <span>行业选择</span><div class="industrySelect"><selects @selectChange='selectChange' class="selectCls"></selects></div>
         </li>
-        <li class="appName">
+        <!--<li class="appName">
           <span>应用名称</span><div class="industrySelect"> <input class="input" v-model='appname'/></div>
-        </li>
+        </li>-->
         <li class="adKeyword">
           <span>广告关键词</span><div class="industrySelect"><input class="input" placeholder="关键词用逗号分隔" v-model='keywords'/></div>
         </li>
@@ -40,8 +40,6 @@ export default {
       var keywords = this.keywords
       if(industry===''){
         alert('请选择行业')
-      }else if(appname===''){
-        alert('请输入应用名称')
       }else if(keywords===''){
         alert('请输入关键字')
       }else{
@@ -70,11 +68,8 @@ export default {
 
   li span{
     margin-right:20px;
-    font-size:14px;
-    color:#323232;
-  }
-  li div{
-    width:230px;
+    font-size:17px;
+    color:#878787;
   }
   
   .indexBody{
@@ -86,12 +81,39 @@ export default {
     padding:20px;
   }
   .input{
-      width:210px;
-      height:30px;
+      width: 300px;
+      height: 36px;
       border:1px solid #ccc;
       border-radius:4px;
       padding:0px 10px;
   }
+  .selectCls{
+      width:320px;
+  }
+  .indexFoot{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    margin-top:30px
+  }
+  .submit{
+    width:90px;
+    height:40px;
+    background:#0070c0 ;
+    border:1px solid #ccc;
+    border-radius:4px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:#fff;
+    cursor:pointer;
+  }
+  .history{
+    margin-top:80px;
+    float:right;
+    margin-right:30px
+  }
+  
   @media screen and (max-width: 600px) {
     li {
       width:100%;
@@ -117,29 +139,6 @@ export default {
     .selectCls{
       width:180px;
     }
-  }
-  .indexFoot{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    margin-top:30px
-  }
-  .submit{
-    width:120px;
-    height:30px;
-    background:#0070c0 ;
-    border:1px solid #ccc;
-    border-radius:4px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    color:#fff;
-    cursor:pointer;
-  }
-  .history{
-    margin-top:80px;
-    float:right;
-    margin-right:30px
   }
   
   

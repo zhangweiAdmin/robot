@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div>
+    <div class="content">
       <header id="header">
         <img src="./assets/header.png">
       </header>
@@ -27,7 +27,9 @@ export default {
   display:flex;
   justify-content: center;
   align-items: center;
+  //background:#f5f5f5;
 }
+
 @media screen and (max-width: 600px) {
   #app{
     margin-top: 20px;

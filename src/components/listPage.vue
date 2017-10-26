@@ -102,10 +102,12 @@
     margin-top:80px;
   }
   .everyItemCon{
-    height:340px;
+    height:450px;
+    overflow:auto;
+
   }
   .container .everyItem{
-    width:330px;
+    width:600px;
     height:50;
     display:flex;
     justify-content:space-between;
@@ -117,9 +119,9 @@
   }
 
   .everyItem p{
-    width: 285px;
+    width: 540px;
     overflow: hidden;
-    white-space: nowrap;
+    white-space: wrap;
     text-overflow: ellipsis;
     text-align: left;
     padding: 0px 10px;
@@ -220,7 +222,10 @@
       margin-top:20px;
     }
     .everyItemCon{
-      height:320px;
+      height:400px;
+    }
+    .container .everyItem{
+      width:330px;
     }
   }
 </style>

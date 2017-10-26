@@ -75,11 +75,11 @@
 <style scoped>
   .container{
     margin-top:20px;
-    height: 340px;
+    height: 600px;
     overflow: auto;
   }
   .container .everyItem{
-    width:330px;
+    width:600px;
     height:50;
     display:flex;
     justify-content:space-between;
@@ -90,9 +90,9 @@
     border-radius:5px;
   }
   .everyItem p{
-    width: 295px;
+    width: 560px;
     overflow: hidden;
-    white-space: nowrap;
+    white-space: wrap;
     text-overflow: ellipsis;
     text-align: left;
     padding:0px 10px;
