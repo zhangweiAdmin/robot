@@ -4,18 +4,21 @@
       <div class="listLogo">
         <img src="../assets/list-history.png" alt="">
       </div>
+      <div class="history">
+        <img src="../assets/history.png" alt="" @click="toHistory">
+      </div>
     </div>
 
     <div class="content" v-loading="loading2" element-loading-text="拼命加载中...">
-      <div class="item">
+      <div class="item" v-show="!noData">
         <img src="../assets/item.png" alt="">
       </div>
       <div class="listDatas" v-show="!noData">
         <div class="everyData" v-for="(val,key) in listData">
           <p class="dataText">{{val.text}}</p>
           <div class="zanOrCai">
-            <img src="../assets/zan.png" alt="" v-show='val.status===1'>
-            <img src="../assets/cai.png" alt="" v-show='val.status===1'>
+            <img src="../assets/zan.png" alt="" @click="request(val.id,1,$event)">
+            <img src="../assets/cai.png" alt="" @click="request(val.id,2,$event)">
           </div>
         </div>
       </div>
@@ -23,8 +26,8 @@
         <img src="../assets/nodata.png" alt="">
       </div>
     </div>
-    <div class="bottom">
-      <router-link id="turnPage" to="/index">返回</router-link>
+    <div class="bottom" v-show="listData.length!==0">
+      <a id="turnPage" href="">再来一波</a>
     </div>
   </div>
 </template>
@@ -34,35 +37,64 @@
     data () {
       return {
         loading2:true,
-        listData:[{}],
-        noData:false
+        listData:[],
+        noData:false,
+        baseParam:"",
+        pageCount:1
       }
     },
     methods:{
-      clear(){
-        var self = this;
-        this.$http.get(baseUrl+'clear_star_list',
+      toHistory(){
+        this.$router.push({name:'history'});
+      },
+      request (itemId,state,evt){
+        var tag = evt.srcElement||evt.target;
+        var parentTag = tag.parentNode;
+        var imgs = parentTag.childNodes;
+
+        this.$http.get(baseUrl+"update_status",
           {
-            params: {}
+            params:{"id":itemId,"target_status":state}
           }).then((response) => {
-          self.listData=[];
-          self.nodata = true
+          imgs.forEach(function(val,key){
+            if(val.nodeType===1){
+              val.setAttribute('class',"")
+            }
+          });
+          tag.setAttribute('class',"bounceIn")
         })
+      },
+      init(params){
+        if(params.industry){
+          var self = this;
+          //获取初始化列表数据
+          this.$http.get(baseUrl+"list",
+            {
+              params: params
+            }).then((response) => {
+            self.loading2 = false;
+            if(response.body.tbody && response.body.tbody.length>0){
+              self.listData =response.body.tbody;
+            }else{
+              self.listData=[];
+              self.noData = true;
+            }
+          })
+        }else{
+          this.$router.push({name:'index'});
+        }
+      },
+      turnPage (){
+        var params=this.baseParam;
+        params.page=++this.pageCount;
+        params.rows='6';
+        this.init(params)
       }
     },
     mounted(){
-      var self = this;
-      this.$http.get(baseUrl+'star_list',
-        {
-          params: {}
-        }).then((response) => {
-        self.loading2=false;
-        if(response.body.tbody&&response.body.tbody.length>0){
-          self.listData =response.body.tbody;
-        }else{
-          self.nodata = true;
-        }
-      })
+        let params = this.$route.params;
+        this.baseParam = params;
+        this.init(params);
     }
   }
 </script>
@@ -80,6 +112,11 @@
   }
   .indexLogo>img{
     margin:0px auto;
+  }
+  .history>img{
+    position:absolute;
+    right:50px;
+    top:34px;
   }
   .content{
     display:flex;
@@ -146,56 +183,5 @@
     background:#6724d1;
     color:#fff;
     cursor: pointer;
-  }
-  @keyframes bounceIn {
-    0%,100%,20%,40%,60%,80% {
-      -webkit-transition-timing-function: cubic-bezier(0.215,.61,.355,1);
-      transition-timing-function: cubic-bezier(0.215,.61,.355,1)
-    }
-
-    0% {
-      opacity: 0;
-      -webkit-transform: scale3d(.3,.3,.3);
-      -ms-transform: scale3d(.3,.3,.3);
-      transform: scale3d(.3,.3,.3)
-    }
-
-    20% {
-      -webkit-transform: scale3d(1.1,1.1,1.1);
-      -ms-transform: scale3d(1.1,1.1,1.1);
-      transform: scale3d(1.1,1.1,1.1)
-    }
-
-    40% {
-      -webkit-transform: scale3d(.9,.9,.9);
-      -ms-transform: scale3d(.9,.9,.9);
-      transform: scale3d(.9,.9,.9)
-    }
-
-    60% {
-      opacity: 1;
-      -webkit-transform: scale3d(1.03,1.03,1.03);
-      -ms-transform: scale3d(1.03,1.03,1.03);
-      transform: scale3d(1.03,1.03,1.03)
-    }
-
-    80% {
-      -webkit-transform: scale3d(.97,.97,.97);
-      -ms-transform: scale3d(.97,.97,.97);
-      transform: scale3d(.97,.97,.97)
-    }
-
-    100% {
-      opacity: 1;
-      -webkit-transform: scale3d(1,1,1);
-      -ms-transform: scale3d(1,1,1);
-      transform: scale3d(1,1,1)
-    }
-  }
-  .bounceIn {
-    -webkit-animation-name: bounceIn;
-    animation-name: bounceIn;
-    -webkit-animation-duration: .75s;
-    animation-duration: .75s
   }
 </style>
