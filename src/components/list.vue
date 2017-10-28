@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="bottom" v-show="listData.length!==0">
-      <a id="turnPage" href="">再来一波</a>
+      <a id="turnPage" @click="turnPage">再来一波</a>
     </div>
   </div>
 </template>
@@ -55,7 +55,7 @@
         this.$http.get(baseUrl+"update_status",
           {
             params:{"id":itemId,"target_status":state}
-          }).then((response) => {
+          }).then(() => {
           imgs.forEach(function(val,key){
             if(val.nodeType===1){
               val.setAttribute('class',"")
@@ -94,6 +94,8 @@
     mounted(){
         let params = this.$route.params;
         this.baseParam = params;
+        params.page=this.pageCount;
+        params.rows='6';
         this.init(params);
     }
   }
@@ -146,7 +148,7 @@
     border-radius:20px;
     display: flex;
     align-items: center;
-    padding: 0px 20px;
+    padding: 5px 20px;
   }
   .zanOrCai{
     margin-left:20px;
@@ -183,5 +185,56 @@
     background:#6724d1;
     color:#fff;
     cursor: pointer;
+  }
+  @keyframes bounceIn {
+    0%,100%,20%,40%,60%,80% {
+      -webkit-transition-timing-function: cubic-bezier(0.215,.61,.355,1);
+      transition-timing-function: cubic-bezier(0.215,.61,.355,1)
+    }
+
+    0% {
+      opacity: 0;
+      -webkit-transform: scale3d(.3,.3,.3);
+      -ms-transform: scale3d(.3,.3,.3);
+      transform: scale3d(.3,.3,.3)
+    }
+
+    20% {
+      -webkit-transform: scale3d(1.1,1.1,1.1);
+      -ms-transform: scale3d(1.1,1.1,1.1);
+      transform: scale3d(1.1,1.1,1.1)
+    }
+
+    40% {
+      -webkit-transform: scale3d(.9,.9,.9);
+      -ms-transform: scale3d(.9,.9,.9);
+      transform: scale3d(.9,.9,.9)
+    }
+
+    60% {
+      opacity: 1;
+      -webkit-transform: scale3d(1.03,1.03,1.03);
+      -ms-transform: scale3d(1.03,1.03,1.03);
+      transform: scale3d(1.03,1.03,1.03)
+    }
+
+    80% {
+      -webkit-transform: scale3d(.97,.97,.97);
+      -ms-transform: scale3d(.97,.97,.97);
+      transform: scale3d(.97,.97,.97)
+    }
+
+    100% {
+      opacity: 1;
+      -webkit-transform: scale3d(1,1,1);
+      -ms-transform: scale3d(1,1,1);
+      transform: scale3d(1,1,1)
+    }
+  }
+  .bounceIn {
+    -webkit-animation-name: bounceIn;
+    animation-name: bounceIn;
+    -webkit-animation-duration: .75s;
+    animation-duration: .75s
   }
 </style>

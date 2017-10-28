@@ -15,7 +15,7 @@
           <p class="dataText">{{val.text}}</p>
           <div class="zanOrCai">
             <img src="../assets/zan.png" alt="" v-show='val.status===1'>
-            <img src="../assets/cai.png" alt="" v-show='val.status===1'>
+            <img src="../assets/cai.png" alt="" v-show='val.status===2'>
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@
     border-radius:20px;
     display: flex;
     align-items: center;
-    padding: 0px 20px;
+    padding: 5px 20px;
   }
   .zanOrCai{
     margin-left:20px;
@@ -147,55 +147,5 @@
     color:#fff;
     cursor: pointer;
   }
-  @keyframes bounceIn {
-    0%,100%,20%,40%,60%,80% {
-      -webkit-transition-timing-function: cubic-bezier(0.215,.61,.355,1);
-      transition-timing-function: cubic-bezier(0.215,.61,.355,1)
-    }
 
-    0% {
-      opacity: 0;
-      -webkit-transform: scale3d(.3,.3,.3);
-      -ms-transform: scale3d(.3,.3,.3);
-      transform: scale3d(.3,.3,.3)
-    }
-
-    20% {
-      -webkit-transform: scale3d(1.1,1.1,1.1);
-      -ms-transform: scale3d(1.1,1.1,1.1);
-      transform: scale3d(1.1,1.1,1.1)
-    }
-
-    40% {
-      -webkit-transform: scale3d(.9,.9,.9);
-      -ms-transform: scale3d(.9,.9,.9);
-      transform: scale3d(.9,.9,.9)
-    }
-
-    60% {
-      opacity: 1;
-      -webkit-transform: scale3d(1.03,1.03,1.03);
-      -ms-transform: scale3d(1.03,1.03,1.03);
-      transform: scale3d(1.03,1.03,1.03)
-    }
-
-    80% {
-      -webkit-transform: scale3d(.97,.97,.97);
-      -ms-transform: scale3d(.97,.97,.97);
-      transform: scale3d(.97,.97,.97)
-    }
-
-    100% {
-      opacity: 1;
-      -webkit-transform: scale3d(1,1,1);
-      -ms-transform: scale3d(1,1,1);
-      transform: scale3d(1,1,1)
-    }
-  }
-  .bounceIn {
-    -webkit-animation-name: bounceIn;
-    animation-name: bounceIn;
-    -webkit-animation-duration: .75s;
-    animation-duration: .75s
-  }
 </style>
