@@ -12,9 +12,18 @@
       <div class="industry">
         <p class="industryText">选择行业</p>
         <div class="industries" @click="getIndustry">
-          <div class="game" value="游戏"></div>
-          <div class="wedding" value="婚纱摄影"></div>
-          <div class="more" value="更多"></div>
+          <div class="game">
+            <div class="industryImgs" value="游戏"></div>
+            <p id="gametext">游戏</p>
+          </div>
+          <div class="wedding">
+            <div class="industryImgs" value="婚纱摄影"></div>
+            <p id="weddingtext">婚纱摄影</p>
+          </div>
+          <div class="more">
+            <div class="industryImgs" value="更多"></div>
+            <p id="moretext">更多</p>
+          </div>
         </div>
       </div>
       <div class="keyword">
@@ -65,13 +74,21 @@
             alert("你好！暂不支持其他行业");
           }else{
             this.industry=val;
-
             if(classArr.length!==1){
               tag.setAttribute("class",classArr[0]);
             }
             let newClass = tag.getAttribute('class');
             setTimeout(()=>{
               tag.setAttribute("class",newClass+" bounceIn");
+              let game = document.getElementById('gametext');
+              let wed = document.getElementById('weddingtext');
+              game.style.color="#878787";
+              wed.style.color="#878787";
+              if(val==="游戏"){
+                game.style.color="#e5c725";
+              }else{
+                wed.style.color="purple";
+              }
             },80)
 
           }
@@ -98,7 +115,7 @@
   .options{
     margin:0 auto;
     margin-top:72px;
-    width:480px;
+    width:540px;
   }
   .options>div{
     height:88px;
@@ -114,25 +131,35 @@
     display:flex;
     margin-right: -16px;
   }
+  .industryImgs{
+    width:80px;
+    height:77px;
+  }
   .industries>div{
-    height: 90px;
+    height: 77px;
     width: 80px;
     cursor: pointer;
+    margin-right:50px;
+    font-size:18px;
   }
-  .game{
-    background:url('../assets/option.png');
+  .industries p{
+    text-align:center;
+    color:#878787;
+  }
+  .game>div{
+    background:url('../assets/options.png');
     background-position: 0px 0px;
-    margin-right:50px;
   }
-  .wedding{
-    background:url('../assets/option.png');
-    background-position: 0px 180px;
-    margin-right:50px;
+  .wedding>div{
+    background:url('../assets/options.png');
+    background-position: 0px 185px;
   }
-  .more{
-    background:url('../assets/option.png');
-    background-position: 0px 359px;
-
+  .more>div{
+    background:url('../assets/options.png');
+    background-position: 0px 350px;
+  }
+  .keyword div{
+    margin-right:50px;
   }
   #input_keyword{
     background:none;
@@ -144,6 +171,7 @@
     height: 40px;
     padding:0px 20px;
     font-size:18px;
+    color:#878787;
   }
   input::-webkit-input-placeholder {
     text-align: center;
