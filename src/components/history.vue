@@ -60,7 +60,7 @@
         if(response.body.tbody&&response.body.tbody.length>0){
           self.listData =response.body.tbody;
         }else{
-          self.nodata = true;
+          self.noData = true;
         }
       })
     }
