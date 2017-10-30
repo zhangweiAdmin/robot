@@ -164,7 +164,7 @@
   }
   .more>div{
     background:url('../assets/options.png');
-    background-position: 0px 90px;
+    background-position: 0px 84px;
   }
   .keyword div{
     margin-right:50px;
