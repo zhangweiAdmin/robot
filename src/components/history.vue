@@ -5,7 +5,7 @@
         <img src="../assets/list-history.png" alt="">
       </div>
     </div>
-
+    <div class="clear" @click="clear">清空数据</div>
     <div class="content" v-loading="loading2" element-loading-text="拼命加载中...">
       <div class="item">
         <img src="../assets/item.png" alt="">
@@ -72,6 +72,29 @@
     display:flex;
     justify-content: center;
     align-items: center;
+  }
+  .clear{
+    margin:0 auto;
+    color:#6724d1;
+    text-align:center;
+    margin-top:20px;
+    width:100px;
+    height:26px;
+    text-decoration: none;
+    border:2px solid #6724d1;
+    background:#fff;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#6724d1;
+    font-family: MFJiaHei_Noncommercial Regular;
+  }
+  .clear:hover{
+    background:#6724d1;
+    color:#fff;
+    cursor: pointer;
+    border-color:#9e7ad8;
   }
   .listLogo{
     display:flex;
@@ -146,6 +169,7 @@
     background:#6724d1;
     color:#fff;
     cursor: pointer;
+    border-color:#9e7ad8;
   }
 
 </style>

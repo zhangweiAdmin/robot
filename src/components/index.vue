@@ -2,7 +2,7 @@
   <div id="indexContainer">
     <div class="imgs">
       <div class="indexLogo">
-        <img src="../assets/indexLogo.png" alt="">
+        <img src="../assets/indexLogo.png" alt="" @click="gotoRoot">
       </div>
       <div class="history">
         <img src="../assets/history.png" alt="" @click="toHistory">
@@ -13,15 +13,15 @@
         <p class="industryText">选择行业</p>
         <div class="industries" @click="getIndustry">
           <div class="game">
-            <div class="industryImgs" value="游戏"></div>
+            <div class="industryImgs" id="game" value="游戏"></div>
             <p id="gametext">游戏</p>
           </div>
           <div class="wedding">
-            <div class="industryImgs" value="婚纱摄影"></div>
+            <div class="industryImgs" id="wedding" value="婚纱摄影"></div>
             <p id="weddingtext">婚纱摄影</p>
           </div>
           <div class="more">
-            <div class="industryImgs" value="更多"></div>
+            <div class="industryImgs" id="more" value="更多"></div>
             <p id="moretext">更多</p>
           </div>
         </div>
@@ -45,6 +45,9 @@
       }
     },
     methods:{
+      gotoRoot(){
+        this.$router.push({name:'login'})
+      },
       toHistory(){
         this.$router.push({name:'history'});
       },
@@ -82,12 +85,17 @@
               tag.setAttribute("class",newClass+" bounceIn");
               let game = document.getElementById('gametext');
               let wed = document.getElementById('weddingtext');
+              document.querySelector("#game").style.backgroundPosition="0px -178px";
+              document.querySelector("#wedding").style.backgroundPosition="0px 192px";
+  
               game.style.color="#878787";
               wed.style.color="#878787";
               if(val==="游戏"){
                 game.style.color="#e5c725";
+                document.querySelector("#game").style.backgroundPosition="0px 0px";
               }else{
-                wed.style.color="purple";
+                wed.style.color="#6724d1";
+                document.querySelector("#wedding").style.backgroundPosition="0px -82px";
               }
             },80)
 
@@ -148,15 +156,15 @@
   }
   .game>div{
     background:url('../assets/options.png');
-    background-position: 0px 0px;
+    background-position: 0px -178px;
   }
   .wedding>div{
     background:url('../assets/options.png');
-    background-position: 0px 185px;
+    background-position: 0px 192px;
   }
   .more>div{
     background:url('../assets/options.png');
-    background-position: 0px 350px;
+    background-position: 0px 90px;
   }
   .keyword div{
     margin-right:50px;
@@ -198,6 +206,7 @@
     background:#6724d1;
     color:#fff;
     cursor: pointer;
+    border-color:#9e7ad8;
   }
 
   @keyframes bounceIn {

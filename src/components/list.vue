@@ -2,7 +2,7 @@
   <div id="listContainer">
     <div class="imgs">
       <div class="listLogo">
-        <img src="../assets/list-history.png" alt="">
+        <img src="../assets/list-history.png" alt="" @click="gotoIndex">
       </div>
       <div class="history">
         <img src="../assets/history.png" alt="" @click="toHistory">
@@ -44,6 +44,9 @@
       }
     },
     methods:{
+      gotoIndex(){
+        this.$router.push({name:'index'});
+      },
       toHistory(){
         this.$router.push({name:'history'});
       },
