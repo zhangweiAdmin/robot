@@ -48,5 +48,6 @@
     background:#6724d1;
     color:#fff;
     cursor: pointer;
+    border-color:#9e7ad8;
   }
 </style>

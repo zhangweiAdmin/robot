@@ -5,7 +5,7 @@
         <img src="../assets/list-history.png" alt="">
       </div>
     </div>
-    <div class="clear" @click="clear">清空数据</div>
+    <div class="clear" @click="clear" v-show="!noData">清空数据</div>
     <div class="content" v-loading="loading2" element-loading-text="拼命加载中...">
       <div class="item">
         <img src="../assets/item.png" alt="">
@@ -46,7 +46,7 @@
             params: {}
           }).then((response) => {
           self.listData=[];
-          self.nodata = true
+          self.noData = true
         })
       }
     },
